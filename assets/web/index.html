@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>进度卡 · 不丢主线</title><link rel="stylesheet" href="/style.css"><script src="/marked.js"></script><script src="/reader.js"></script><script type="module" src="/app.js"></script></head>
+<body><main>
+<header><div class="brand"><span class="mark" aria-hidden="true">↳</span><div><h1>对话进度</h1><div class="eyebrow">只看这个对话，随时回到主线</div></div></div><span id="connection" role="status" class="connection">正在读取</span></header>
+<nav aria-label="卡片分类"><button id="currentTab" class="active">当前任务</button><button id="historyTab">本对话记录 <span id="count">0</span></button></nav>
+<div id="notice" role="status" hidden></div>
+<section id="current"><div id="card" aria-live="polite"></div></section>
+<section id="history" hidden><p id="catalogNotice" class="small"></p><label class="search"><span>⌕</span><input id="search" type="search" placeholder="查找任务或当时的进展" aria-label="搜索本对话历史记录"></label><div class="historyFilters"><label class="monthFilter"><span>时间</span><select id="monthFilter" aria-label="按月份查找"><option value="">全部时间</option></select></label><label class="filter"><input id="completedOnly" type="checkbox">只看已完结</label></div><details class="dateOptions"><summary>自选日期范围</summary><div class="dateRange"><label>从<input id="dateFrom" type="date" aria-label="起始日期"></label><label>到<input id="dateTo" type="date" aria-label="结束日期"></label></div><button id="clearDates" class="textButton">清除时间筛选</button></details><p id="timeNotice" class="small" role="status"></p><div id="historyList"></div><div id="historyDetail"></div></section>
+<footer><span id="updated">尚未读取</span><button id="refresh" class="textButton">同步进度</button></footer>
+<p class="footnote">回看记录不会改变进度。</p>
+</main></body></html>

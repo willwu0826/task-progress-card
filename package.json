@@ -1,0 +1,10 @@
+{
+  "name": "task-progress-card",
+  "version": "0.1.0",
+  "license": "MIT",
+  "private": true,
+  "description": "A Codex skill for durable conversation progress, detours and traceable history.",
+  "type": "module",
+  "engines": {"node": ">=22"},
+  "scripts": {"test": "node --test tests/*.test.mjs", "start": "node scripts/server.mjs"}
+}

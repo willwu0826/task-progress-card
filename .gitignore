@@ -1,0 +1,12 @@
+node_modules/
+.runs/
+tests/.runs/
+runtime/
+.local/
+registry.json
+*.log
+*.lock
+*.tmp
+.env
+.env.*
+__pycache__/

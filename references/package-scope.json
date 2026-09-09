@@ -1,0 +1,23 @@
+{
+  "version": "0.1.0",
+  "scope": "mature card engine, scoped viewer, history and restoration",
+  "excluded": [
+    "live task data",
+    "conversation registry",
+    "local hooks",
+    "native button candidate",
+    "retired global launcher"
+  ],
+  "copied_engine": [
+    "card.mjs",
+    "cli.mjs",
+    "timeline.mjs",
+    "trace.mjs"
+  ],
+  "adapted": [
+    "entry data/port configuration",
+    "server registry injection",
+    "legacy parser without global discovery",
+    "isolated test fixtures"
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "任务进度卡"
+  short_description: "为长期对话保留主线进度、临时回补、返回点和可查询的任务历史"
+  default_prompt: "使用 $task-progress-card 恢复本对话原有进度卡，并按真实进展维护主线、回补和返回点。"

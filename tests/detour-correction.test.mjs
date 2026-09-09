@@ -1,0 +1,24 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import {fileURLToPath} from 'node:url';
+import {createCard,readCard,updateCard} from '../scripts/card.mjs';
+const folder=new URL('../runtime/correction-check-'+Date.now()+'/',import.meta.url);
+await fs.mkdir(folder,{recursive:true});
+test('纠正回补目标保留旧证据、第三步和返回点，拒绝陈旧或越层更新',async()=>{
+ const file=fileURLToPath(new URL('state.md',folder));
+ let c=await createCard(file,{id:'test-correction',threadId:'test-thread',title:'回补纠正',goal:'保住主线',steps:[{id:'first',title:'第一步',done:true},{id:'second',title:'第二步',done:true},{id:'third',title:'第三步',done:false}],mainlineStepId:'third',currentAction:'核对第三步',nextAction:'完成后交付'});
+ c=await updateCard(file,c.revision,{type:'startDetour',id:'display',title:'全部项目',reason:'误读需求',doneWhen:'总览显示'});
+ const previous=structuredClone(c),action={type:'reviseDetour',id:'display',title:'只看本对话',reason:'原列表混入其他对话',doneWhen:'本对话两条记录可追溯',correction:'用户明确否定全部项目列表'};
+ await assert.rejects(updateCard(file,c.revision-1,action),e=>e.code==='CARD_CONFLICT');
+ await assert.rejects(updateCard(file,c.revision,{...action,id:'another'}),e=>e.code==='CARD_INVALID');
+ c=await updateCard(file,c.revision,action);
+ assert.equal(c.mainlineStepId,'third');assert.deepEqual(c.steps,previous.steps);
+ assert.deepEqual(c.detours[0].returnTo,previous.detours[0].returnTo);
+ assert.equal(c.detours.length,1);assert.equal(c.currentAction,'只看本对话');
+ assert.deepEqual(c.history.at(-1).details.previous,previous.detours[0]);
+ c=await updateCard(file,c.revision,{type:'finishDetour',evidence:'本对话隔离核对完成'});
+ assert.equal(c.currentAction,'核对第三步');assert.equal(c.nextAction,'完成后交付');assert.equal(c.mainlineStepId,'third');
+ await assert.rejects(updateCard(file,c.revision,action),e=>e.code==='CARD_INVALID');
+ assert.deepEqual(await readCard(file),c);
+});
