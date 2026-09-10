@@ -1,10 +1,8 @@
-# 任务进度卡 · Task Progress Card
+# Task Progress Card
 
-A visual progress-tracking skill for complex, long-running Codex tasks. Tracks mainline progress, detours, and return points; preserves step evidence and completion history; supports date-based search, source tracing, and resuming interrupted work. Stores data locally and displays tasks by conversation.
+A visual Codex skill for keeping long-running tasks on track across interruptions. It separates mainline progress from temporary detours, preserves return points and step evidence, and makes task history searchable by date. Progress stays in local files, with a separate view for each conversation and links back to source records.
 
-面向 Codex 长期与复杂任务的可视化进度管理 Skill。分别记录主线进度、临时回补和返回位置，保留步骤依据与完成历史，支持按时间检索、资料追溯和中断后的续接。任务数据本地保存，按对话关联展示，让复杂任务进展可见、过程可查、接续有据。
-
-例如，任务正在第三步，却要回第一步补材料：卡片会同时显示“主线仍在第三步”和“当前正在补什么”；补齐后返回第三步，不把补材料误当重新开始。
+For example, if a task is at step 3 but needs more material from step 1, the card keeps step 3 as the mainline position while tracking what needs to be added and where to resume.
 
 ## 当前功能
 
