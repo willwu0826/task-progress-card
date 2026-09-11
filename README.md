@@ -1,146 +1,144 @@
-**English** | [中文](README.zh-CN.md)
+# 任务进度卡
 
-# Task Progress Card
+**记住做到哪里，随时接着往下做。**
 
-**Know where you left off. Continue from there.**
+任务进度卡是一个用于 Codex 的可视化进度管理 Skill。它把当前任务、主线步骤、临时回补和历史记录放在一张卡里，帮助你在长期对话中看清进展、找回上下文、继续未完成的工作。
 
-Task Progress Card is a visual progress-management skill for Codex. It brings the current task, mainline steps, temporary detours, and history into one card, helping you follow progress, recover context, and continue unfinished work in long conversations.
+## 项目概述
 
-## Overview
+一个任务聊了很久，最容易忘记的往往是：原来要完成什么、现在做到哪一步、接下来该做什么。尤其是做到第三步，又回到第一步补材料时，临时工作很容易盖过原来的进度。
 
-During a long task, it is easy to lose track of the original goal, the current step, and what comes next. This is especially common when you reach step 3, return to step 1 for more material, and become absorbed in that temporary work.
+任务进度卡将“主任务的位置”和“此刻正在做的事”分开记录。回头补充内容时，保留原来的返回点；隔几天继续工作时，可以先看卡片，找回已经记录的进展和待办。
 
-Task Progress Card records the main task's position separately from what you are doing right now. When you revisit earlier work, it keeps a return point. When you come back days later, you can consult the card to recover recorded progress and remaining work.
+它适合调研、写作、开发、内容制作等需要多轮推进的任务，也适合持续数周、经常暂停和续接的项目。
 
-It suits research, writing, development, and content-production tasks that take several rounds, as well as projects that span weeks and involve frequent pauses and resumptions.
+## 主要功能
 
-## What You Get
-
-| Feature | What it helps you do |
+| 功能 | 用途 |
 | --- | --- |
-| Mainline progress | See the task goal, current step, current action, and next step. |
-| Detours and return points | Record why you are revisiting earlier work, what needs to be added, and where to continue afterward, including nested detours. |
-| Views by conversation | View the tasks linked to each conversation separately as you move between projects. |
-| Searchable history | Find past tasks and progress by keyword, completion status, month, or date range. |
-| Step and source tracing | Expand completed steps to review evidence, open linked records, and find the project location. |
-| Local storage and recovery | Keep the original task card and history available after closing the page or restarting the service. |
+| 主线进度 | 查看任务目标、当前步骤、正在做的事和下一步。 |
+| 临时回补与返回点 | 记录为什么回头补充、需要补什么，以及补完后从哪里继续；也支持回补中再次回补。 |
+| 按对话查看 | 每个页面展示关联到该对话的任务，方便在不同项目之间分别查看。 |
+| 历史查询 | 按关键词、完结状态、月份或日期范围查找以前的任务和进展。 |
+| 步骤与资料追溯 | 展开已完成步骤查看依据，打开关联记录，找到项目所在位置。 |
+| 本地保存与续接 | 保留任务原卡及历史，关闭页面或重启服务后可以重新读取。 |
 
-## Quick Start
+## 快速入门
 
-### 1. Install Task Progress Card
+### 1. 安装任务进度卡
 
-Send this request in Codex:
+在 Codex 中发送：
 
-> Use $skill-installer to install the skill from https://github.com/willwu0826/task-progress-card. The skill is at the repository root, and its installation name is task-progress-card.
+> 使用 $skill-installer，安装 https://github.com/willwu0826/task-progress-card 中的 Skill。它位于仓库根目录，安装名称为 task-progress-card。
 
-After installation, confirm that you can invoke `$task-progress-card`. See [Installation and Compatibility](#installation-and-compatibility) for environment requirements.
+安装后，确认可以调用 `$task-progress-card`。运行环境要求见[安装与兼容性](#安装与兼容性)。
 
-### 2. Set up a card for this conversation
+### 2. 为当前对话设置进度卡
 
-Open the conversation you want to track and ask:
+进入你想跟踪进度的对话，发送：
 
-> Use $task-progress-card to set up a progress card for this conversation. Continue the existing record if there is one; otherwise create a card from this task's goals and steps.
+> 使用 $task-progress-card，为本对话设置任务进度卡。已有卡片就接续原来的记录；没有卡片就根据当前任务的目标和步骤建立。
 
-On first use, have Codex identify the task to track and where its data will be saved. Existing cards continue in their original files, retaining their history.
+首次使用时，让 Codex 确认要记录的任务和数据保存位置。已有卡片继续使用原文件，历史记录一并保留。
 
-### 3. Open the page
+### 3. 打开页面
 
-Ask:
+发送：
 
-> Use $task-progress-card to open this conversation's progress-card web page, starting or reusing its local page service.
+> 使用 $task-progress-card，打开本对话的任务卡网页，并启动或复用它需要的本地页面服务。
 
-The page can appear in a browser sidebar provided by Codex or in a browser on the same computer. Once open, it gives you access to the current task, recorded progress, and history.
+页面可以显示在 Codex 提供的浏览器侧栏中，也可以通过同一台电脑上的浏览器打开。打开后，你就能查看当前任务、已有进度和历史入口。
 
-## Everyday Use
+## 日常使用
 
-In the relevant conversation, tell Codex what you want to do with the card:
+在对应的对话中，告诉 Codex 你想对任务卡做什么：
 
-| What you want to do | What you can say |
+| 你想做什么 | 可以这样说 |
 | --- | --- |
-| View current progress | “Use $task-progress-card to open this conversation's progress-card web page.” |
-| Update progress | “Update the card with the work we just completed and the next step.” |
-| Revisit earlier work | “Keep the mainline at step 3. We are returning to step 1 for more material; record the detour and return point.” |
-| Return to the mainline | “The material is ready. Record the result, finish the detour, and return to step 3.” |
-| Resume later | “Use the card to tell me where we left off, what remains unfinished, and what comes next.” |
-| Find past records | “Find the tasks completed last month in this conversation and their related materials.” |
-| Finish a task | “Check whether this task meets its requirements, then record the result and mark it complete if it does.” |
+| 查看当前进度 | “使用 $task-progress-card，打开本对话的任务卡网页。” |
+| 更新进度 | “把刚才完成的工作和下一步更新到进度卡。” |
+| 临时回头补充 | “主线保留在第三步，现在回第一步补资料，记下回补内容和返回点。” |
+| 回到主线 | “资料已经补齐，把结果记下来，结束回补，回到第三步继续。” |
+| 隔一段时间继续 | “根据进度卡告诉我做到哪里、还有什么没完成、接下来做什么。” |
+| 查找旧记录 | “找出本对话上个月已完成的任务和相关资料。” |
+| 结束任务 | “检查这项任务是否已经达到要求，完成后记录结果并标记完结。” |
 
-In the web page, **Current Task (当前任务)** shows ongoing work, and **Conversation History (本对话记录)** lets you browse past records. Expand completed steps to review their evidence, or open a task's archive to view linked materials.
+在网页中，“当前任务”用于查看正在推进的工作，“本对话记录”用于查找历史。点击已完成步骤可以展开依据，进入任务档案可以查看关联资料。
 
-## How It Works
+## 工作原理
 
-The card keeps three things separate: **the mainline position, the current detour, and the return point**.
+任务卡把三个信息分开保存：**主线位置、临时回补、返回点**。
 
-For example, a research report is at step 3, but a source from step 1 needs checking:
+例如，一份调研报告已经做到第三步，但需要回第一步核实资料：
 
 ```text
-Mainline:      Step 3 — Write the report
-Current detour: Return to step 1 to verify a source
-Return when:  The source has been checked and recorded
-Resume at:    Step 3 — Continue writing
+主线位置：第三步——撰写报告
+当前回补：回第一步核实来源资料
+返回条件：资料核实并记录完成
+返回位置：第三步——继续撰写报告
 ```
 
-As work progresses, Codex records actual changes in a local card file. The web page reads that file and displays the task for the corresponding conversation, periodically checking for updates while visible.
+在工作推进时，Codex 将实际进展写入本地卡片文件；网页读取这份文件，展示对应对话的任务。页面可见时会定期读取最新记录。
 
-The page therefore shows saved progress. Closing it does not delete the card; reopening it reads the same original file.
+因此，网页展示的是已经保存的进度。关闭页面不会删除卡片；再次打开时，仍然从原文件接续。
 
-## Installation and Compatibility
+## 安装与兼容性
 
-- **Codex environment:** Local skill support, access to task files, and the ability to run local programs.
-- **Runtime:** Node.js 22 or later, with no additional npm dependency installation.
-- **Installation scope:** Install for a project or as a user-level skill available across projects.
-- **Platform:** Windows is the currently validated environment. Opening a project folder from the page is Windows-only; the complete workflow has not been validated on other systems.
-- **Display:** A local web page. Availability of a Codex sidebar depends on the client's tools.
-- **Language and dates:** The web interface and detailed reference documents are currently primarily in Chinese. Date filters use the `Asia/Shanghai` time zone.
+- **使用环境：**支持本地 Skill、能够读写任务文件并运行本地程序的 Codex 环境。
+- **运行依赖：**Node.js 22 或更高版本，无需安装额外 npm 依赖。
+- **安装范围：**可以按项目安装，也可以安装为用户级 Skill，供多个项目调用。
+- **平台：**当前以 Windows 为已验证环境；通过页面打开项目文件夹的功能仅支持 Windows。其他系统的完整使用流程尚未验证。
+- **显示方式：**本地网页；能否在 Codex 侧栏中打开，取决于客户端提供的工具。
+- **语言与时间：**网页界面和详细参考文档目前主要使用中文，日期筛选使用 `Asia/Shanghai` 时区。
 
-For manual installation, place the complete `task-progress-card` folder in a supported skill location. See the [official Codex skill documentation](https://learn.chatgpt.com/docs/build-skills) for directory options.
+手动安装时，将完整的 `task-progress-card` 文件夹放入 Codex 支持的 Skill 目录。目录选择可参考 [Codex 官方 Skill 文档](https://learn.chatgpt.com/docs/build-skills)。
 
-Keep task data separate from the installation folder. Detailed configuration is covered in [Data and Operations](https://github.com/willwu0826/task-progress-card/blob/main/references/operations.md) and [Display and Recovery](https://github.com/willwu0826/task-progress-card/blob/main/references/display.md).
+任务数据与安装目录分开保存。具体配置方法见[数据与操作接口](https://github.com/willwu0826/task-progress-card/blob/main/references/operations.md)和[显示与恢复](https://github.com/willwu0826/task-progress-card/blob/main/references/display.md)。
 
-## FAQ and Troubleshooting
+## 常见问题与故障排查
 
-**Why is the page empty?**
+**页面为什么是空的？**
 
-The conversation may not have a linked card yet, or the page address may belong to a different conversation. Ask Codex to check this conversation's card association and open the correct page.
+通常是当前对话还没有关联任务卡，或打开了不对应本对话的地址。让 Codex 检查本对话的卡片关联，再打开正确页面。
 
-**Why can't I reach the page?**
+**为什么提示无法访问页面？**
 
-The page depends on a local service. Ask Codex to check that the corresponding service is running and that the page address and port match.
+页面依赖本地服务。让 Codex 检查对应服务是否运行，并确认页面地址与端口一致。
 
-**Why did Codex open a text file?**
+**为什么打开的是文字文件？**
 
-The underlying card can be a Markdown file. To see the visual interface, explicitly ask: “Use $task-progress-card to open this conversation's progress-card web page.”
+卡片原始记录可以是 Markdown 文件。想看可视化页面时，明确说：“使用 $task-progress-card，打开本对话的任务卡网页。”
 
-**Does progress update automatically?**
+**进度会自动更新吗？**
 
-The web page reads the latest saved card contents. Codex needs to record task progress as work proceeds. Installing the skill does not start background monitoring of every conversation or install maintenance hooks.
+网页会读取卡片文件的最新内容；任务进度需要由 Codex 在工作中记录。安装 Skill 本身不会启动对所有对话的后台监测或维护钩子。
 
-**How do I reopen a closed card?**
+**关闭以后怎样重新打开？**
 
-Ask Codex to open this conversation's progress-card web page again, or use its existing page link while the service is running. There is currently no permanent button beside the chat input.
+再次让 Codex 打开本对话的任务卡网页，也可以在服务运行时使用已有的页面链接。目前没有聊天输入框旁的固定按钮。
 
-**Can I use it in other conversations?**
+**其他对话也能用吗？**
 
-Yes. There is no two-conversation limit. Ask Codex to associate each conversation you want to track with its task. A project-scoped installation is available within that project.
+可以，没有只能用于两个对话的限制。让 Codex 为需要使用的对话关联对应任务即可。安装在项目范围内的 Skill，需要在该项目中调用。
 
-**Can it recover everything from earlier chats?**
+**以前的聊天内容都能找回来吗？**
 
-It recovers what has been saved in cards and linked materials. Progress that was never recorded is not filled in automatically.
+任务卡可以恢复已经写入卡片和关联资料的内容；没有记录下来的聊天进度，不会自动补齐。
 
-## Privacy and Data
+## 隐私与数据
 
-- **Stored information:** Task titles, goals, steps, progress, history, and linked file paths are kept in local files. Records and paths may contain personal or business information.
-- **Data processing:** The card itself provides no cloud sync, collects no telemetry, and makes no model API calls. When Codex reads cards or materials, their contents can enter its model context and are subject to Codex account settings and data-handling rules.
-- **Page access:** The page service is available on the local machine by default. It has no separate account login system, and programs with suitable access on the same computer may read its contents. It is not intended to be exposed publicly.
-- **Sharing:** Before sharing screenshots, logs, or task files, check for names, project details, and private paths. File-exclusion settings in the code repository do not automatically remove personal information.
-- **Backup and removal:** Back up cards, conversation associations, and any original materials you need to retain. Uninstalling the skill does not automatically delete separately stored task data.
+- **保存内容：**任务标题、目标、步骤、进度、历史及关联资料路径等，存放在本地文件中。记录和路径可能包含个人或业务信息。
+- **数据处理：**任务卡本身不提供云同步、不收集遥测数据，也不自行调用模型 API。当 Codex 读取卡片或资料时，内容可能进入模型上下文，受 Codex 的账户设置和数据处理规则约束。
+- **页面访问：**页面服务默认只在本机开放。它没有独立账户登录体系，同一台电脑上有相应访问能力的程序可能读取内容，因此不适合直接对外公开。
+- **对外分享：**分享截图、日志或任务文件前，请检查姓名、项目内容和私人路径等信息。代码仓库中的文件排除设置不会自动替你脱敏。
+- **备份与卸载：**备份时同时保存任务卡、对话关联记录，以及需要保留的原始资料。卸载 Skill 不会自动删除另行保存的任务数据。
 
-## Development and License
+## 开发与许可
 
-Executor instructions are in [SKILL.md](https://github.com/willwu0826/task-progress-card/blob/main/SKILL.md). After changing the code, run the tests from the repository root:
+执行说明见 [SKILL.md](https://github.com/willwu0826/task-progress-card/blob/main/SKILL.md)。修改代码后，可在仓库根目录运行测试：
 
 ```sh
 node --test tests/*.test.mjs
 ```
 
-This project uses the [MIT License](https://github.com/willwu0826/task-progress-card/blob/main/LICENSE). The Markdown renderer, marked, retains its own [MIT license and copyright notice](https://github.com/willwu0826/task-progress-card/blob/main/assets/web/vendor/marked.LICENSE.md).
+本项目采用 [MIT 许可](https://github.com/willwu0826/task-progress-card/blob/main/LICENSE)。Markdown 渲染组件 marked 保留其自身的 [MIT 许可与版权声明](https://github.com/willwu0826/task-progress-card/blob/main/assets/web/vendor/marked.LICENSE.md)。
