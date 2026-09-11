@@ -1,4 +1,4 @@
-[English](README.md) | **中文**
+[返回项目首页](README.md)
 
 # 任务进度卡
 
