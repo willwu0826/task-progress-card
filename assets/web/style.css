@@ -96,3 +96,118 @@ select:focus-visible{outline:2px solid var(--green);outline-offset:2px}
 .workflowDetails>summary:focus-visible,summary:focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:4px}
 .backButton{position:sticky;top:51px;z-index:1;background:var(--paper);padding:10px 0;border-bottom:1px solid var(--line);width:100%;text-align:left}
 @media(max-width:400px){.workflowDetails>summary{gap:6px}.workflowDetails>summary .stepCount{font-size:10px}.next{gap:10px}}
+
+/* Opt-in roadmap: stages are connected rows, with inline work detail below. */
+.workflowMap{margin:24px 0 28px;letter-spacing:0}
+.workflowHeading{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.workflowHeading h3{font-size:15px;line-height:1.5;margin:0}
+.workflowHeading>span{font-size:11px;color:var(--muted)}
+.workflowStages{list-style:none;padding:0;margin:0}
+.workflowStage{list-style:none;margin:0;padding:0;min-width:0}
+.workflowMap .stageDetails{margin:0;padding:0;border:0;border-radius:0}
+.workflowMap .stageDetails>summary{display:grid;grid-template-columns:32px minmax(0,1fr) auto 16px;align-items:center;gap:12px;min-height:72px;padding:9px 6px 9px 0;list-style:none;border-bottom:1px solid var(--line);color:var(--ink)}
+.workflowMap .stageDetails>summary::-webkit-details-marker{display:none}
+.workflowMap .stageDetails>summary:hover{background:#eef2f1}
+.stageNumber{display:grid;place-items:center;width:32px;height:32px;border:1px solid #bbc8c4;border-radius:50%;font-size:13px;color:#596b66;background:#fff}
+.stageHeading{display:block;min-width:0;overflow-wrap:anywhere}
+.stageHeading strong{display:block;font-size:14px;font-weight:600;line-height:1.6}
+.stageMeta{display:block;font-size:10px;color:var(--muted);line-height:1.7;margin-top:2px}
+.stageState{font-size:10px;color:var(--muted);white-space:nowrap}
+.stageChevron{font-size:21px;line-height:1;color:#71867e;transform:rotate(0);transition:transform .15s}
+.stageDetails[open]>summary .stageChevron{transform:rotate(90deg)}
+.stageConnector{height:24px;width:32px;text-align:center;line-height:24px;color:#9daea7;font-size:20px;user-select:none}
+.workflowStage.isCurrent>.stageDetails>summary{border-bottom:2px solid #488778}
+.workflowStage.isCurrent .stageNumber{background:#1f695c;border-color:#1f695c;color:white}
+.workflowStage.isCurrent .stageState{color:#1f695c;font-weight:600}
+.workflowStage.isComplete .stageNumber{background:#e8efeb;color:#3c5e4c;border-color:#91ab9b}
+.stageContent{margin:0 0 0 15px;padding:12px 0 2px 28px;border-left:1px solid #c7d7d0}
+.stagePurpose{font-size:11px;line-height:1.8;color:var(--muted);margin:0 0 9px;overflow-wrap:anywhere}
+.workflowMap .stageSteps{margin:0;padding:0;list-style:none}
+.workflowMap .stageSteps>li{margin:0;padding:0;border-bottom:1px solid #e5e9e6}
+.workflowMap .stageSteps>li:last-child{border-bottom:0}
+.workflowMap .stepDetails>summary{display:grid;grid-template-columns:20px minmax(0,1fr) 16px;gap:8px;padding:10px 0;min-height:46px}
+.workflowMap .stepDetails .stepnum{grid-column:1;grid-row:1;width:20px;height:20px}
+.workflowMap .stepDetails .stepTitle{grid-column:2;grid-row:1;overflow-wrap:anywhere;line-height:1.8;font-size:12px}
+.workflowMap .stepDetails .stepChevron{grid-column:3;grid-row:1}
+.workflowMap .stepDetails .nowtag{display:block;grid-column:2;grid-row:2;justify-self:start;margin:0;font-size:10px;color:#1f695c}
+.workflowMap .stepBody{margin:0 0 12px;padding:8px 0 12px 28px;background:transparent;border:0;border-radius:0;min-width:0}
+.workCategory{margin:0 0 16px;padding:0}
+.workCategory h4{font-size:12px;font-weight:600;margin:0 0 5px;color:var(--ink);line-height:1.8}
+.workCategory ul{padding-left:17px;margin:0;list-style:disc}
+.workflowMap .workCategory li{display:list-item;padding:2px 0;margin:0;font-size:12px;line-height:1.8;font-weight:400;color:var(--ink);overflow-wrap:anywhere}
+.workAcceptance{border-top:1px solid var(--line);margin:12px 0 18px;padding-top:10px;font-size:11px;line-height:1.8}
+.workAcceptance>div{margin-bottom:10px}
+.workAcceptance dt{color:#566d63;font-weight:600}
+.workAcceptance dd{margin:2px 0 0;overflow-wrap:anywhere}
+@media(max-width:400px){.workflowMap .stageDetails>summary{gap:8px;grid-template-columns:28px minmax(0,1fr) auto 12px}.stageNumber{width:28px;height:28px}.stageConnector{width:28px}.stageHeading strong{font-size:13px}.stageState{font-size:9px}.stageContent{margin-left:13px;padding-left:14px}.workflowMap .stepBody{padding-left:0}}
+
+/* A continuous overview stays above optional work detail. */
+.workflowFocus{border-left:3px solid #357e72;padding:0 0 0 14px;margin:0 0 25px;letter-spacing:0}
+.focusLocation>span{display:block;color:#58736c;font-size:11px;margin-bottom:4px}
+.focusLocation strong{font-size:16px;line-height:1.6;overflow-wrap:anywhere}
+.focusRepair{font-size:12px;margin:8px 0 3px;color:#845d29;overflow-wrap:anywhere}
+.focusReturn{font-size:11px;margin:3px 0 12px;color:#62766c;overflow-wrap:anywhere}
+.focusNext>span{font-size:11px;color:var(--muted)}
+.focusNext p{font-size:12px;line-height:1.8;margin:3px 0 10px;overflow-wrap:anywhere}
+.focusPrerequisite{font-size:11px;color:#865d2e;margin:9px 0 5px;overflow-wrap:anywhere}
+.focusScope{font-size:11px;color:#65786e;line-height:1.8}
+.focusScope p{margin:5px 0;overflow-wrap:anywhere}
+.workflowFocus .focusEvidence{border:0;padding:0;margin:10px 0 0;font-size:11px}
+.focusEvidence p{overflow-wrap:anywhere}
+.workflowMap .stageNode{display:grid;grid-template-columns:28px minmax(0,1fr) auto 14px;gap:9px;align-items:center;width:100%;min-height:55px;border:0;border-bottom:1px solid #dce4e0;border-radius:0;background:transparent;padding:7px 0;text-align:left;color:var(--ink)}
+.workflowMap .stageNode:hover{background:#f0f5f3}
+.workflowMap .stageNode .stageNumber{width:28px;height:28px}
+.workflowMap .stageNode .stageHeading strong{font-size:13px}
+.workflowMap .stageNode .stageOutstanding{grid-column:2 / -1;font-size:10px;line-height:1.6;color:#875d2f;overflow-wrap:anywhere}
+.workflowMap .stageConnector{height:19px;line-height:19px;width:28px;font-size:17px}
+.workflowMap .isCurrent>.stageNode{border-bottom:2px solid #488778}
+.workflowDrilldown{margin-top:28px;padding-top:20px;border-top:1px solid #c6d4ce}
+.workflowDrilldown>h3{font-size:14px;margin:0 0 12px}
+.workflowMap .workflowDrilldown>.stageDetails{scroll-margin-top:70px}
+.workflowMap .workflowDrilldown>.stageDetails>summary{grid-template-columns:minmax(0,1fr) auto 16px;min-height:48px;padding:8px 0;gap:8px}
+.workflowDrilldown>.stageDetails>summary>.stageChevron{grid-column:3}
+.workflowDrilldown .stageContent{margin-left:0;padding-left:14px}
+.workflowMap .workCategory{margin:0;padding:0;border:0}
+.workflowMap .workCategory>summary{min-height:40px;padding:7px 0;font-size:12px;font-weight:500;color:var(--ink)}
+.workflowMap .workCategory ul{margin:0 0 12px;padding-left:17px}
+.workflowMap .workEvidence{padding:0;margin:10px 0 0;border-top:1px solid var(--line)}
+.workEvidence>summary{font-size:11px;padding:9px 0;min-height:38px}
+.workEvidence .workAcceptance{margin-top:0;border:0;padding-top:0}
+@media(max-width:400px){.workflowFocus{padding-left:10px}.workflowMap .stageNode{gap:7px;grid-template-columns:26px minmax(0,1fr) auto 12px}.workflowMap .stageNode .stageNumber{width:26px;height:26px}.workflowDrilldown .stageContent{padding-left:10px}.workflowMap .stageMeta{font-size:10px}.workflowMap .stageState{font-size:10px}}
+
+/* History separates readable work products from event logs and file plumbing. */
+#historyDetail .historyCaption{font-size:11px;color:var(--muted);margin:0 0 16px;line-height:1.8}
+.historySectionHeading{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:24px 0 6px}
+.historySectionHeading h3{font-size:15px;margin:0}
+.historySectionHeading>span{font-size:11px;color:var(--muted);white-space:nowrap}
+.historyContents .historyGroup{margin:0;padding:0;border:0;border-bottom:1px solid var(--line);letter-spacing:0}
+.historyGroup>summary{display:flex;align-items:center;gap:12px;list-style:none;padding:16px 0;min-height:70px;color:var(--ink)}
+.historyGroup>summary::-webkit-details-marker{display:none}
+.historyGroup>summary>span:first-child{flex:1;min-width:0}
+.historyGroup>summary strong{font-size:14px;display:block}
+.historyGroup>summary small{display:block;font-size:11px;color:var(--muted);line-height:1.8;margin-top:4px;overflow-wrap:anywhere}
+.chapterChevron{display:inline-flex;width:18px;flex:none;justify-content:center;font-size:20px;color:#71867e}
+.historyGroup[open]>summary>.chapterChevron{transform:rotate(90deg)}
+.historyGroup .historyChapters{padding:0 0 8px 12px;margin:0;list-style:none;border-left:2px solid #d5dfdb}
+.historyChapters>li{list-style:none;margin:0;padding:0;border-top:1px solid var(--line);min-width:0}
+.historyChapters>li:first-child{border-top:0}
+.chapterButton{width:100%;display:flex;align-items:center;gap:10px;text-align:left;color:var(--ink);border:0;background:transparent;padding:12px 0;min-height:52px;border-radius:0}
+.chapterButton>span:first-child{flex:1;min-width:0}
+.chapterButton strong{font-size:12px;font-weight:600;display:block;overflow-wrap:anywhere;line-height:1.8}
+.chapterButton small{display:block;font-size:11px;line-height:1.85;color:var(--muted);margin-top:4px;overflow-wrap:anywhere}
+.chapterButton:hover,.chapterButton[aria-expanded="true"]{color:#246a5f;background:#eef4f2}
+.chapterOrigin{font-size:10px;line-height:1.8;color:var(--muted);margin:0 0 12px;overflow-wrap:anywhere}
+.historyContents .chapterBody{background:transparent;border:0;border-radius:0;padding:0 0 18px;font-size:13px}
+.chapterBody>:first-child{margin-top:0}
+.historyOriginal{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:16px 0 26px;font-size:10px;color:var(--muted)}
+.historyOriginal .textButton{padding:6px 0;font-size:11px}
+.historyFiles{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.historyFiles .textButton{font-size:11px;padding:6px;border-bottom:2px solid transparent;overflow-wrap:anywhere;text-align:left}
+.historyFiles .selected{border-color:var(--green);font-weight:600}
+.historyFiles button:disabled{cursor:default;color:#8a6b4e}
+#historyDetail .historyEvents,#historyDetail .historyLocation{margin-top:16px;padding-top:12px}
+.historyEvents>summary,.historyLocation>summary{font-size:12px}
+.historyEvents .taskTimeline{margin:15px 0}
+.historyEvents .historyDay{margin:8px 0;padding:8px 0;font-size:11px}
+.historyLocation .sourcepath{font-size:11px}
+@media(max-width:400px){.historyGroup>summary{gap:8px;padding:13px 0}.historyGroup .historyChapters{padding-left:8px}.chapterButton{gap:6px}.historySectionHeading{gap:8px}}

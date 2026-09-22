@@ -16,6 +16,26 @@ const seed = (id = 'example') => ({
 const rejectsCode = (code) => (error) => error.code === code;
 const cardFile = (name) => path.join(testRoot, `${name}.md`);
 
+test('optional workflow and work metadata survive init, read and updates', async () => {
+  const file = cardFile('workflow-metadata');
+  const input = seed();
+  input.workflow = { stages: [
+    { id: 'prepare', title: 'Prepare', stepIds: ['s1'] },
+    { id: 'deliver', title: 'Deliver', stepIds: ['s2', 's3'] },
+  ], scopeEvidenceRefs: [0] };
+  input.steps[0].work = { categories: [{ title: 'Sources', items: ['Verify inputs'] }], doneWhen: 'Inputs verified' };
+  const expected = structuredClone(input);
+  const created = await createCard(file, input);
+  input.workflow.stages[0].title = 'External mutation';
+  assert.deepEqual(created.workflow, expected.workflow);
+  await updateCard(file, created.revision, { type: 'setAction', text: 'Read verified inputs' });
+  const saved = await readCard(file);
+  assert.deepEqual(saved.workflow, expected.workflow);
+  assert.deepEqual(saved.steps, expected.steps);
+  const plain = await createCard(cardFile('without-workflow'), seed('plain'));
+  assert.equal(Object.hasOwn(plain, 'workflow'), false);
+});
+
 test('第三步回补第一步，多层回补和进程重启均保持准确返回位置', async () => {
   const file = cardFile('detour-recovery');
   let card = await createCard(file, seed());

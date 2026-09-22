@@ -1,6 +1,6 @@
 {
   "name": "task-progress-card",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "MIT",
   "private": true,
   "description": "A Codex skill for durable conversation progress, detours and traceable history.",

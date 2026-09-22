@@ -1,6 +1,6 @@
 {
-  "version": "0.1.0",
-  "scope": "mature card engine, scoped viewer, history and restoration",
+  "version": "0.2.0",
+  "scope": "card engine, staged workflow, categorized history reader and restoration",
   "excluded": [
     "live task data",
     "conversation registry",

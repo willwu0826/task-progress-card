@@ -191,6 +191,7 @@ export async function createCard(file, data) {
     revision: 0,
     updatedAt: now,
     steps,
+    ...(data.workflow === undefined ? {} : { workflow: structuredClone(data.workflow) }),
     mainlineStepId: data.mainlineStepId ?? steps.find((step) => !step.done)?.id ?? steps.at(-1)?.id,
     currentAction: data.currentAction ?? '',
     detours: structuredClone(data.detours ?? []),

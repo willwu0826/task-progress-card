@@ -39,3 +39,25 @@ test('文档属性不冒充标题，非Markdown原文保持文本',()=>{
  assert.equal(render('<b>文字</b>','note.txt'),'<pre class="documentPlain">&lt;b&gt;文字&lt;/b&gt;</pre>');
 });
 
+
+test('历史章节按真实Markdown标题拆分，代码及引用中的标题不混入目录',()=>{
+ const source='---\ncreated: 2026-09-01\n---\n# 文档名\n\n## 1. 统一分镜v4｜待审\n\n唯一剧情段落。\n\n```text\n## 假标题\n```\n\n> ## 引用内标题\n\n### 1.1 镜头细目\n细目仍属于剧本。\n\n## 2. 旁白对照稿\n声音说明。\n\n## 3. 返修Prompt\n资产说明。\n\n## 4. 记录依据\n过程说明。';
+ const parts=context.ProgressDocument.sections(source,'state.md');
+ assert.equal(parts.length,4);
+ assert.deepEqual(Array.from(parts,p=>p.groupId),['story','shots','assets','process']);
+ assert.equal(parts[0].title,'统一分镜v4｜待审');assert.equal(parts[0].sourceTitle,'1. 统一分镜v4｜待审');
+ assert.equal(parts[0].summary,'唯一剧情段落。');
+ assert.match(parts[0].content,/## 假标题|1.1 镜头细目/);assert.doesNotMatch(parts[1].content,/唯一剧情段落/);
+ assert.ok(parts.every(p=>!('date' in p)&&!('status' in p)),'Do not infer dates or approvals from ordering');
+ assert.equal(context.ProgressDocument.sections(source,'state.txt').length,0);
+ assert.equal(context.ProgressDocument.sections('没有标题','state.md').length,0);
+});
+
+test('同名标题、前言和缺少正文的章节保持可追溯，不误标最新版',()=>{
+ const parts=context.ProgressDocument.sections('# 总标题\n说明文字。\n\n## 资产候选\n第一版。\n\n## 资产候选\n第二版。','state.md');
+ assert.equal(parts.length,3);assert.equal(parts[0].title,'文档说明');
+ assert.equal(new Set(parts.map(s=>s.id)).size,3);
+ assert.doesNotMatch(JSON.stringify(parts),/最新版|已通过/);
+ const empty=context.ProgressDocument.sections('## 空章节\n\n## 有内容\n实际记录。','state.md');
+ assert.equal(empty.length,2);assert.equal(empty[0].title,'空章节');
+});

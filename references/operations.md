@@ -55,6 +55,40 @@ setup 只创建空登记，已有文件保持原样。所有命令中的 `<skill
 
 引擎使用独占锁、版本检查和原子替换。CARD_CONFLICT 表示有人写入了新进展；CARD_LOCKED 表示存在写入者。先核实，不猜测旧锁、不盲目重试，不整卡恢复旧快照。
 
+## 可选阶段图与工作细目
+
+初始化 JSON 可增加以下字段。例子沿用上文三个步骤；不新增第二份进度来源。
+
+```json
+{
+  "workflow": {
+    "stages": [
+      {"id":"preparation","title":"准备","summary":"核对输入与目标","stepIds":["prepare"]},
+      {"id":"execution","title":"制作与交付","stepIds":["build","verify"]}
+    ],
+    "scopeEvidenceRefs": [0]
+  }
+}
+```
+
+`stepIds` 按原步骤顺序完整且唯一覆盖全部步骤，阶段 id 唯一。缺失、重复或错序时页面回退完整步骤清单。`scopeEvidenceRefs` 是当前 `acceptance` 数组的零起始索引；只引用实际适用的边界，不推断授权。
+
+单个步骤可加以下阅读字段，原来的 `id/title/done` 仍保留：
+
+```json
+{
+  "label": "制作成果",
+  "work": {
+    "categories": [{"title":"输入检查","items":["核对已确认要求","确认材料齐全"]}],
+    "output": "可审阅成果",
+    "doneWhen": "成果与要求核对通过",
+    "returnPoint": "仅返回未通过的工作项"
+  }
+}
+```
+
+这些字段只改善展示，不自行完成步骤。创建与常规状态更新会保留它们；本版没有单独修改阶段结构的 CLI 动作。既有卡仅在获得原任务授权后维护其原有字段，不为使用新界面重建或覆盖旧卡。展开、点击和分类阅读均不写卡；刷新时保留的阅读状态仅限当前页面会话。
+
 ## 绑定与资料导航
 
 `node scripts/bind.mjs <绑定JSON路径>` 使用真实运行时 CODEX_THREAD_ID。示例输入：
